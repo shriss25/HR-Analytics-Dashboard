@@ -1,0 +1,182 @@
+# HR ANALYTICS — DAX MEASURES & CALCULATED COLUMNS
+
+Paste these into **Power BI Desktop** after loading the cleaned `Employee_Data` table.
+
+---
+
+## MEASURES (Modeling → New Measure)
+
+```DAX
+Total Employees =
+COUNTROWS(Employee_Data)
+```
+
+**Expected Result:** 1470
+
+---
+
+```DAX
+Attrition Count =
+CALCULATE(
+    COUNTROWS(Employee_Data),
+    Employee_Data[Attrition] = "Yes"
+)
+```
+
+**Expected Result:** 237
+
+---
+
+```DAX
+Attrition Rate =
+DIVIDE(
+    [Attrition Count],
+    [Total Employees]
+)
+```
+
+**Format:** Percentage (1 Decimal)
+
+**Expected Result:** **16.1%**
+
+---
+
+```DAX
+Average Salary =
+AVERAGE(Employee_Data[MonthlyIncome])
+```
+
+**Format:** Currency
+
+**Expected Result:** **~6.5K**
+
+---
+
+```DAX
+Average Experience =
+AVERAGE(Employee_Data[YearsAtCompany])
+```
+
+**Expected Result:** **~7.0 Years**
+
+---
+
+```DAX
+Average Satisfaction =
+AVERAGE(Employee_Data[JobSatisfaction])
+```
+
+**Expected Result:** **~2.73**
+
+---
+
+```DAX
+High Risk Attrition Rate =
+CALCULATE(
+    [Attrition Rate],
+    Employee_Data[AttritionRiskFlag] = "High Risk"
+)
+```
+
+**Format:** Percentage (1 Decimal)
+
+**Expected Result:** **48.1%**
+
+---
+
+# CALCULATED COLUMNS (Modeling → New Column)
+
+## Salary Band
+
+```DAX
+Salary Band =
+IF(
+    Employee_Data[MonthlyIncome] < 3000,
+    "Low",
+    IF(
+        Employee_Data[MonthlyIncome] < 7000,
+        "Medium",
+        "High"
+    )
+)
+```
+
+---
+
+## Age Group
+
+```DAX
+Age Group =
+SWITCH(
+    TRUE(),
+    Employee_Data[Age] < 30, "Young",
+    Employee_Data[Age] < 50, "Mid",
+    "Senior"
+)
+```
+
+---
+
+## AttritionRiskFlag
+
+```DAX
+AttritionRiskFlag =
+IF(
+    Employee_Data[OverTime] = "Yes"
+        && Employee_Data[JobSatisfaction] <= 2
+        && Employee_Data[SalarySlab] = "Upto 5k",
+    "High Risk",
+    "Normal"
+)
+```
+
+---
+
+## SalarySlab_Sort
+
+```DAX
+SalarySlab_Sort =
+SWITCH(
+    Employee_Data[SalarySlab],
+    "Upto 5k", 1,
+    "5k-10k", 2,
+    "10k-15k", 3,
+    "15k+", 4
+)
+```
+
+Use:
+**Column Tools → SalarySlab → Sort by Column → SalarySlab_Sort**
+
+---
+
+## AgeGroup_Sort
+
+```DAX
+AgeGroup_Sort =
+SWITCH(
+    Employee_Data[AgeGroup],
+    "18-25", 1,
+    "26-35", 2,
+    "36-45", 3,
+    "46-55", 4,
+    "55+", 5
+)
+```
+
+Use:
+**Column Tools → AgeGroup → Sort by Column → AgeGroup_Sort**
+
+---
+
+# Dashboard KPI Values
+
+| KPI                      | Expected Value |
+| ------------------------ | -------------: |
+| Total Employees          |       **1470** |
+| Attrition Count          |        **237** |
+| Attrition Rate           |      **16.1%** |
+| Average Salary           |      **~6.5K** |
+| Average Experience       |       **~7.0** |
+| Average Satisfaction     |      **~2.73** |
+| High Risk Attrition Rate |      **48.1%** |
