@@ -95,15 +95,15 @@ HR-Analytics-Dashboard/
 
 ### Executive Overview
 
-<img src="screenshots/overview.png" width="900">
+![Executive Overview](screenshots/overview.png)
 
 ### Employee Analysis
 
-<img src="screenshots/employee_analysis.png" width="900">
+![Employee Analysis](screenshots/employee_analysis.png)
 
 ### Attrition Analysis
 
-<img src="screenshots/attrition.png" width="900">
+![Attrition Analysis](screenshots/attrition.png)
 
 ---
 
