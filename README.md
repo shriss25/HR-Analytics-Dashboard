@@ -15,7 +15,6 @@ This project analyzes HR data to uncover patterns affecting employee retention a
 ## 📈 Dashboard Pages
 
 ### 1. Executive Overview
-
 * Total Employees
 * Attrition Rate
 * Average Salary
@@ -25,13 +24,11 @@ This project analyzes HR data to uncover patterns affecting employee retention a
 * Gender Distribution
 
 ### 2. Employee Analysis
-
 * Employee Age Distribution
 * Average Salary by Job Role
 * Years at Company Distribution
 
 ### 3. Attrition Analysis
-
 * Attrition by Department
 * Attrition by Overtime
 * Attrition by Salary Band
@@ -94,15 +91,12 @@ HR-Analytics-Dashboard/
 ## 📸 Dashboard Preview
 
 ### Executive Overview
-
 ![Executive Overview](screenshots/overview.png)
 
 ### Employee Analysis
-
 ![Employee Analysis](screenshots/employee_analysis.png)
 
 ### Attrition Analysis
-
 ![Attrition Analysis](screenshots/attrition.png)
 
 ---
@@ -141,6 +135,5 @@ HR-Analytics-Dashboard/
 ## 👩‍💻 Author
 
 **Shrishti**
-
 B.Tech Computer Science Engineering
 Aspiring Data Analyst | Power BI | SQL | Excel | Python
